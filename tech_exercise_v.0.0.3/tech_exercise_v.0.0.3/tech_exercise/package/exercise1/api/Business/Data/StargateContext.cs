@@ -6,9 +6,9 @@ namespace StargateAPI.Business.Data
     public class StargateContext : DbContext
     {
         public IDbConnection Connection => Database.GetDbConnection();
-        public DbSet<Person> People { get; set; }
-        public DbSet<AstronautDetail> AstronautDetails { get; set; }
-        public DbSet<AstronautDuty> AstronautDuties { get; set; }
+        public DbSet<Person> People => Set<Person>();
+        public DbSet<AstronautDetail> AstronautDetails => Set<AstronautDetail>();
+        public DbSet<AstronautDuty> AstronautDuties => Set<AstronautDuty>();
 
         public StargateContext(DbContextOptions<StargateContext> options)
         : base(options)
@@ -19,7 +19,7 @@ namespace StargateAPI.Business.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StargateContext).Assembly);
 
-            //SeedData(modelBuilder);
+            SeedData(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
