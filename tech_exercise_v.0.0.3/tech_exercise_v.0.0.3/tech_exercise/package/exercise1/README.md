@@ -21,11 +21,11 @@ The People that exist in this system are not all Astronauts. ACTS maintains a ma
 
 The REST API is expected to do the following:
 
-1. Retrieve a person by name.
-1. Retrieve all people.
-1. Add/update a person by name.
-1. Retrieve Astronaut Duty by name.
-1. Add an Astronaut Duty.
+1. Retrieve a person by name. X
+1. Retrieve all people. X
+1. Add/update a person by name. \ Change Post into PUT for update
+1. Retrieve Astronaut Duty by name. X
+1. Add an Astronaut Duty. X
 
 ##### Implement a user interface: (Required)
 
@@ -40,7 +40,7 @@ The UI is expected to do the following:
 Overview
 Examine the code, find and resolve any flaws, if any exist. Identify design patterns and follow or change them. Provide fix(es) and be prepared to describe the changes.
 
-1. Generate the database
+1. Generate the database X
    * This is your source and storage location
 1. Enforce the rules 
 1. Improve defensive coding
@@ -59,15 +59,18 @@ Examine the code, find and resolve any flaws, if any exist. Identify design patt
 ## Rules
 
 1. A Person is uniquely identified by their Name.
-## Set name as unique person ID
-1. A Person who has not had an astronaut assignment will not have Astronaut records.
-## don't require astronaut records for person without astronaut duty
-1. A Person will only ever hold one current Astronaut Duty Title, Start Date, and Rank at a time.
-## 1:1 relationship for Person/Duty
-1. A Person's Current Duty will not have a Duty End Date.
-## Make Duty End Date nullable
-1. A Person's Previous Duty End Date is set to the day before the New Astronaut Duty Start Date when a new Astronaut Duty is received for a Person.
-## Set Person Duty End Date when creating new Duty
-1. A Person is classified as 'Retired' when a Duty Title is 'RETIRED'.
+## Set name as unique constraint, matters when adding new persons or duties by person
 
+
+1. A Person who has not had an astronaut assignment will not have Astronaut records.
+## Not exactly sure how to apply this rule
+
+
+
+1. A Person will only ever hold one current Astronaut Duty Title, Start Date, and Rank at a time.
+1. A Person's Current Duty will not have a Duty End Date.
+1. A Person's Previous Duty End Date is set to the day before the New Astronaut Duty Start Date when a new Astronaut Duty is received for a Person.
+## When creating duty, check for existing duty without end date, set that end date to day before new start date 
+
+1. A Person is classified as 'Retired' when a Duty Title is 'RETIRED'.
 1. A Person's Career End Date is one day before the Retired Duty Start Date.

@@ -31,7 +31,7 @@ namespace StargateAPI.Business.Commands
         public Task Process(CreateAstronautDuty request, CancellationToken cancellationToken)
         {
             var person = _context.People.AsNoTracking().FirstOrDefault(z => z.Name == request.Name);
-
+            
             if (person is null) throw new BadHttpRequestException("Bad Request");
 
             var verifyNoPreviousDuty = _context.AstronautDuties.FirstOrDefault(z => z.DutyTitle == request.DutyTitle && z.DutyStartDate == request.DutyStartDate);
@@ -56,7 +56,6 @@ namespace StargateAPI.Business.Commands
 
             var person = await _context.Connection.QueryFirstOrDefaultAsync<Person?>(query);
             //todo null handler check for person obj
-            
             query = $"SELECT * FROM [AstronautDetail] WHERE {person.Id} = PersonId";
 
             var astronautDetail = await _context.Connection.QueryFirstOrDefaultAsync<AstronautDetail>(query);

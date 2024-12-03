@@ -9,7 +9,7 @@ namespace StargateAPI.Business.Data
     {
         public int Id { get; set; }
 
-        public int PersonId { get; set; }
+        public required int PersonId { get; set; }
 
         public string CurrentRank { get; set; } = string.Empty;
 
@@ -19,7 +19,7 @@ namespace StargateAPI.Business.Data
 
         public DateTime? CareerEndDate { get; set; }
 
-        public virtual Person? Person { get; set; }
+        public virtual Person Person { get; set; }
     }
 
     public class AstronautDetailConfiguration : IEntityTypeConfiguration<AstronautDetail>

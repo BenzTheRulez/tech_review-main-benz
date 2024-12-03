@@ -24,13 +24,13 @@ namespace StargateAPI.Business.Queries
         {
 
             var result = new GetAstronautDutiesByNameResult();
-
+            // could be handled with linq EF Context
             var query = $"SELECT a.Id as PersonId, a.Name, b.CurrentRank, b.CurrentDutyTitle, b.CareerStartDate, b.CareerEndDate FROM [Person] a LEFT JOIN [AstronautDetail] b on b.PersonId = a.Id WHERE \'{request.Name}\' = a.Name";
 
             var person = await _context.Connection.QueryFirstOrDefaultAsync<PersonAstronaut>(query);
 
             result.Person = person;
-
+            // could be handled with linq EF Context
             query = $"SELECT * FROM [AstronautDuty] WHERE {person.PersonId} = PersonId Order By DutyStartDate Desc";
 
             var duties = await _context.Connection.QueryAsync<AstronautDuty>(query);
